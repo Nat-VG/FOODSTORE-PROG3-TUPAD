@@ -26,6 +26,10 @@ public class DetallePedido extends Base {
     @JoinColumn(name = "producto_id",nullable = false)
     private Producto producto;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pedido_id", nullable = false)
+    private Pedido pedido;
+
     public void calcularSubtotal() {
         if (this.producto != null && this.cantidad != null) {
             this.subtotal = this.producto.getPrecio() * this.cantidad;

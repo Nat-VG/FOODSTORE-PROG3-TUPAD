@@ -7,8 +7,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -38,10 +38,9 @@ public class Pedido extends Base implements Calculable {
     @Column(name = "forma_pago",nullable = false, length = 20)
     private FormaPago formaPago;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "pedido_id")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private Set<DetallePedido> detalles = new HashSet<>();
+    private List<DetallePedido> detalles = new ArrayList<>();
 
     public void addDetallePedido(int cantidad, Producto producto) {
         DetallePedido detalle = DetallePedido.builder()
@@ -50,6 +49,7 @@ public class Pedido extends Base implements Calculable {
                 .subtotal(producto.getPrecio() * cantidad)
                 .build();
 
+        detalle.setPedido(this);
         this.detalles.add(detalle);
         this.total += detalle.getSubtotal();
     }
