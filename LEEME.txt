@@ -1,0 +1,23 @@
+TPI Programacion 3 — Food Store
+================================
+
+Empaquetar para entrega: comprimir las carpetas frontend/ y backend/ en un ZIP
+con el nombre Apellido_Nombre_TPI_Prog3.zip
+
+Excluir del ZIP: frontend/node_modules, frontend/dist, backend/build, backend/.gradle, backend/data
+
+Ejecutar backend:
+  cd backend
+  .\gradlew.bat run
+
+Ejecutar frontend:
+  cd frontend
+  npm install
+  npm run dev
+  Abrir http://localhost:5173
+
+Credenciales:
+  Admin:   admin@admin.com / 123456
+  Cliente: cliente@food.com / cliente123
+
+Ver README.md dentro de frontend/ y backend/ para mas detalle.

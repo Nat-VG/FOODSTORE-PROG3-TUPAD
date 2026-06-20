@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hamburguesa Clasica",
+    "precio": 12500,
+    "descripcion": "Carne 150g, lechuga, tomate, cebolla morada y mayonesa",
+    "stock": 50,
+    "imagen": "/images/products/1.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Hamburguesa Doble",
+    "precio": 16800,
+    "descripcion": "Doble carne 150g, cheddar, panceta y salsa barbacoa",
+    "stock": 40,
+    "imagen": "/images/products/2.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Hamburguesa Completa",
+    "precio": 14200,
+    "descripcion": "Carne 150g, huevo, jamon, queso, lechuga y tomate",
+    "stock": 30,
+    "imagen": "/images/products/3.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 4,
+    "nombre": "Hamburguesa Veggie",
+    "precio": 13500,
+    "descripcion": "Medallon de lentejas y quinoa, rucula y hummus",
+    "stock": 20,
+    "imagen": "/images/products/4.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Pizza Mozzarella",
+    "precio": 9800,
+    "descripcion": "Mozzarella, salsa de tomate y oregano",
+    "stock": 25,
+    "imagen": "/images/products/5.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 6,
+    "nombre": "Pizza Napolitana",
+    "precio": 11200,
+    "descripcion": "Mozzarella, tomate, ajo, aceitunas y albahaca",
+    "stock": 25,
+    "imagen": "/images/products/6.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 7,
+    "nombre": "Pizza Fugazzeta",
+    "precio": 11800,
+    "descripcion": "Mozzarella, cebolla caramelizada, jamon y aceitunas",
+    "stock": 20,
+    "imagen": "/images/products/7.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 8,
+    "nombre": "Pizza Especial",
+    "precio": 13500,
+    "descripcion": "Mozzarella, pepperoni, morron, cebolla, huevo y aceitunas",
+    "stock": 15,
+    "imagen": "/images/products/8.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 9,
+    "nombre": "Empanada de Carne",
+    "precio": 2800,
+    "descripcion": "Carne picada, cebolla, huevo duro y aceitunas",
+    "stock": 100,
+    "imagen": "/images/products/9.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 10,
+    "nombre": "Empanada de Pollo",
+    "precio": 2800,
+    "descripcion": "Pollo desmenuzado, cebolla, morron y crema",
+    "stock": 80,
+    "imagen": "/images/products/10.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 11,
+    "nombre": "Empanada Jamon y Queso",
+    "precio": 2600,
+    "descripcion": "Jamon cocido y mozzarella",
+    "stock": 90,
+    "imagen": "/images/products/11.jpg",
+    "disponible": false,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 12,
+    "nombre": "Empanada de Verdura",
+    "precio": 2600,
+    "descripcion": "Espinaca, acelga, ricota y nuez moscada",
+    "stock": 60,
+    "imagen": "/images/products/12.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 13,
+    "nombre": "Coca-Cola 500ml",
+    "precio": 3200,
+    "descripcion": "Gaseosa Coca-Cola original 500ml",
+    "stock": 200,
+    "imagen": "/images/products/13.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 14,
+    "nombre": "Sprite 500ml",
+    "precio": 3200,
+    "descripcion": "Gaseosa Sprite 500ml",
+    "stock": 180,
+    "imagen": "/images/products/14.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 15,
+    "nombre": "Agua Mineral 500ml",
+    "precio": 2200,
+    "descripcion": "Agua mineral sin gas 500ml",
+    "stock": 300,
+    "imagen": "/images/products/15.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 16,
+    "nombre": "Cerveza Artesanal 473ml",
+    "precio": 5200,
+    "descripcion": "Cerveza artesanal rubia 473ml",
+    "stock": 100,
+    "imagen": "/images/products/16.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 17,
+    "nombre": "Papas Fritas Clasicas",
+    "precio": 7200,
+    "descripcion": "Papas fritas baston crocantes con sal parrillera",
+    "stock": 70,
+    "imagen": "/images/products/17.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 18,
+    "nombre": "Papas con Cheddar y Panceta",
+    "precio": 9500,
+    "descripcion": "Papas fritas con cheddar y panceta crocante",
+    "stock": 50,
+    "imagen": "/images/products/18.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 19,
+    "nombre": "Aros de Cebolla",
+    "precio": 7800,
+    "descripcion": "Aros de cebolla empanizados con salsa barbacoa",
+    "stock": 40,
+    "imagen": "/images/products/19.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 20,
+    "nombre": "Papas Bravas",
+    "precio": 8400,
+    "descripcion": "Papas con salsa brava picante y alioli",
+    "stock": 35,
+    "imagen": "/images/products/20.jpg",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  }
+]
