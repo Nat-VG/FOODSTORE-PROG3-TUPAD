@@ -1063,10 +1063,6 @@ public class Main {
         mostrarProductos(productoRepo.listarActivos());
     }
 
-    private static void mostrarUsuarios() {
-        mostrarUsuariosTabla(usuarioRepo.listarActivos());
-    }
-
     private static void mostrarUsuariosTabla(List<Usuario> usuarios) {
         if (usuarios.isEmpty()) {
             info("No hay usuarios activos.");
