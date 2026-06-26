@@ -1055,10 +1055,6 @@ public class Main {
         }
     }
 
-    private static void mostrarCategorias() {
-        mostrarCategorias(categoriaRepo.listarActivos());
-    }
-
     private static void mostrarProductos() {
         mostrarProductos(productoRepo.listarActivos());
     }
