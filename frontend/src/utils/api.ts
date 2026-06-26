@@ -9,11 +9,26 @@ let categoriasCache: Categoria[] | null = null;
 let productosCache: Producto[] | null = null;
 let usuariosCache: Usuario[] | null = null;
 let pedidosCache: Pedido[] | null = null;
+const PEDIDOS_LOCAL_KEY = 'foodstore_pedidos';
 
 async function fetchJson<T>(url: string): Promise<T> {
   const response = await fetch(url, { cache: 'no-store' });
   if (!response.ok) throw new Error(`Error al cargar ${url}`);
   return response.json() as Promise<T>;
+}
+
+function loadPedidosLocal(): Pedido[] {
+  const raw = localStorage.getItem(PEDIDOS_LOCAL_KEY);
+  if (!raw) return [];
+  try {
+    return JSON.parse(raw) as Pedido[];
+  } catch {
+    return [];
+  }
+}
+
+function savePedidosLocal(pedidos: Pedido[]): void {
+  localStorage.setItem(PEDIDOS_LOCAL_KEY, JSON.stringify(pedidos));
 }
 
 export async function getCategorias(): Promise<Categoria[]> {
@@ -39,7 +54,12 @@ export async function getUsuarios(): Promise<Usuario[]> {
 
 export async function getPedidos(): Promise<Pedido[]> {
   if (!pedidosCache) {
-    pedidosCache = await fetchJson<Pedido[]>('/data/pedidos.json');
+    const base = await fetchJson<Pedido[]>('/data/pedidos.json');
+    const local = loadPedidosLocal();
+    const merged = new Map<number, Pedido>();
+    base.forEach((p) => merged.set(p.id, p));
+    local.forEach((p) => merged.set(p.id, p));
+    pedidosCache = Array.from(merged.values());
   }
   return [...pedidosCache];
 }
@@ -90,13 +110,18 @@ export function updateProducto(producto: Producto): void {
 }
 
 export function addPedido(pedido: Pedido): void {
-  getPedidosMemoria().push(pedido);
+  const list = getPedidosMemoria();
+  list.push(pedido);
+  savePedidosLocal(list);
 }
 
 export function updatePedido(pedido: Pedido): void {
   const list = getPedidosMemoria();
   const idx = list.findIndex((p) => p.id === pedido.id);
-  if (idx >= 0) list[idx] = pedido;
+  if (idx >= 0) {
+    list[idx] = pedido;
+    savePedidosLocal(list);
+  }
 }
 
 export function addUsuarioMemoria(usuario: Usuario): void {

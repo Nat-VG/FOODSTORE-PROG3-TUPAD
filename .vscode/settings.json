@@ -1,0 +1,40 @@
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.import.gradle.enabled": true,
+  "java.import.gradle.wrapper.enabled": true,
+  "java.project.importOnFirstTimeStartup": "automatic",
+  "java.import.gradle.projectName": "foodstore-backend",
+  "java.import.exclusions": [
+    "**/Natalia_Gutierrez_Parcial_2/**",
+    "**/TPACORREGIDO/**",
+    "**/plantilla-foodstore-jpa/**",
+    "**/ENTREGA_TPI/**",
+    "**/TP-TS-NATALIA-GUTIERREZ/**",
+    "**/TP_ToString_Colecciones/**",
+    "**/node_modules/**",
+    "**/bin/**"
+  ],
+  "java.project.resourceFilters": [
+    "node_modules",
+    ".git",
+    "dist",
+    "build",
+    ".gradle",
+    "bin"
+  ],
+  "files.exclude": {
+    "**/Natalia_Gutierrez_Parcial_2": true,
+    "**/TPACORREGIDO": true,
+    "**/TP-TS-NATALIA-GUTIERREZ": true,
+    "**/TP_ToString_Colecciones": true,
+    "**/plantilla-foodstore-jpa": true,
+    "**/ENTREGA_TPI": true
+  },
+  "files.watcherExclude": {
+    "**/backend/.gradle/**": true,
+    "**/backend/build/**": true,
+    "**/backend/bin/**": true,
+    "**/frontend/node_modules/**": true,
+    "**/frontend/dist/**": true
+  }
+}

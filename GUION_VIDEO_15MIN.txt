@@ -1,0 +1,290 @@
+GUION DE PRESENTACION - TPI FOOD STORE (15 MINUTOS)
+Autora: Natalia Gutierrez
+
+Como usar este guion
+- No hace falta leerlo palabra por palabra: es una guia con tiempos y pantallas.
+- Tono: conversacional, tranquilo, pero preciso en lo tecnico.
+- Al inicio: camara encendida (obligatorio segun PAUTAS).
+- Tener listo: IDE, navegador en localhost:5173, consola con backend corriendo.
+
+Credenciales de prueba
+- Admin:   admin@admin.com / 123456
+- Cliente: cliente@food.com / cliente123
+
+
+================================================================================
+00:00 - 01:00 | BIENVENIDA (camara + contexto)
+================================================================================
+
+[MOSTRAR: vos a camara, sonriendo, ambiente ordenado]
+
+DECIR (natural):
+"Hola, soy Natalia Gutierrez. En este video les muestro mi TPI de Programacion 3:
+Food Store, un sistema de pedidos de comida.
+
+Tiene dos partes: una web en TypeScript con Vite, y un backend de consola con
+Java, JPA, Hibernate y base H2. Van a ver que las dos funcionan por separado
+y que cada una cumple su rol."
+
+[MOSTRAR: carpeta raiz con frontend/ y backend/]
+
+"La consigna pide frontend y backend desacoplados: la web consume JSON por ahora,
+y la consola persiste en base de datos real. Eso no es un error de integracion,
+es la arquitectura de esta entrega."
+
+
+================================================================================
+01:00 - 02:15 | ESTRUCTURA DEL PROYECTO (rapido pero claro)
+================================================================================
+
+[MOSTRAR: frontend/src/pages — auth, store, client, admin]
+
+"En el frontend organicé todo por paginas: login, registro, tienda, carrito,
+mis pedidos y panel admin. El enrutado es por hash, desde main.ts."
+
+[MOSTRAR: frontend/src/utils/api.ts — primeras lineas y comentario de REST]
+
+"Todos los datos pasan por api.ts. Hoy apunta a public/data/*.json. Si manana
+conecto el backend Java, cambio las URLs aca y el resto de la app sigue igual.
+Eso fue una decision consciente para no mezclar UI con persistencia."
+
+[MOSTRAR: backend/src/main/java/com/tp/jpa — model, repository, Main.java]
+
+"En el backend tengo el paquete com.tp.jpa: entidades, repositorios con JPQL,
+JPAUtil y Main con el menu de consola. Gradle, persistence.xml y H2 en archivo
+estan incluidos en la entrega, asi el proyecto compila y corre en limpio."
+
+
+================================================================================
+02:15 - 05:30 | FRONTEND — FLUJO CLIENTE (~3 min)
+================================================================================
+
+[MOSTRAR: navegador, pantalla de login]
+
+"Voy a entrar como cliente: cliente@food.com, cliente123.
+
+El login busca en usuarios.json, compara mail y password, y guarda la sesion
+en localStorage sin la contraseña. Simple, pero cumple lo que pide la consigna
+para esta iteracion."
+
+[MOSTRAR: catalogo /store — sidebar categorias, busqueda, ordenamiento]
+
+"Acá esta el catalogo. Cargo categorias y productos con fetch.
+
+Filtro solo productos activos y disponibles — eliminado false y disponible true.
+Puedo filtrar por categoria, buscar por nombre y ordenar por precio o alfabeto.
+Todo client-side, sobre los datos ya cargados."
+
+[MOSTRAR: click en un producto — detalle con cantidad y stock]
+
+"En el detalle valido que la cantidad no supere el stock. Si no hay stock o
+no esta disponible, no dejo agregar al carrito."
+
+[MOSTRAR: carrito — items, +/- , subtotal, envio, total]
+
+"El carrito vive en localStorage, asi no se pierde si recargo la pagina.
+El total es subtotal mas envio. El envio esta en config.ts — en mi caso es cero,
+y eso esta documentado en el README del frontend."
+
+[MOSTRAR: modal checkout — telefono, direccion, forma de pago, confirmar]
+
+"Completo telefono, direccion y forma de pago — efectivo, tarjeta o transferencia.
+Al confirmar, creo el pedido en PENDIENTE, bajo stock en memoria, guardo en
+localStorage y limpio el carrito."
+
+[MOSTRAR: Mis pedidos — lista, filtro por estado, modal detalle]
+
+"En Mis pedidos veo solo los mios, filtrados por el usuario logueado.
+Cada pedido tiene badge de color segun estado y un modal con el detalle completo."
+
+
+================================================================================
+05:30 - 08:15 | FRONTEND — PANEL ADMIN (~2 min 45 s)
+================================================================================
+
+[MOSTRAR: logout, login como admin@admin.com / 123456]
+
+"Ahora cierro sesion y entro como admin. El sistema me manda al panel porque
+el rol es ADMIN — eso esta en usuarios.json."
+
+[MOSTRAR: dashboard — 4 tarjetas + resumen pedidos por estado]
+
+"El dashboard no tiene numeros inventados: calcula categorias, productos,
+pedidos y disponibles desde los JSON. Abajo un resumen por estado de pedidos."
+
+[MOSTRAR: admin/categories — tabla, boton Nueva, modal alta, editar, eliminar]
+
+"Categorias: alta, edicion y baja logica. No borro el registro, marco eliminado
+en true — mismo concepto que soft delete del backend."
+
+[MOSTRAR: admin/products — alta con categoria, precio, stock, disponible]
+
+"Productos: valido precio mayor a cero y stock no negativo. Cada uno va ligado
+a una categoria."
+
+[MOSTRAR: admin/orders — filtro estado, tarjeta pedido, cambiar estado]
+
+"Pedidos admin: veo todos los pedidos, el nombre del cliente, filtro por estado
+y puedo cambiar el estado — por ejemplo de PENDIENTE a CONFIRMADO.
+
+Con esto el frontend cubre auth, roles, tienda, carrito, historial del cliente
+y administracion completa."
+
+
+================================================================================
+08:15 - 12:00 | BACKEND — CONSOLA JPA (~3 min 45 s)
+================================================================================
+
+[MOSTRAR: terminal — cd backend, .\gradlew.bat run, menu principal]
+
+"Pasemos al backend. Lo levanto con gradlew run.
+
+Si la base esta vacia, DataSeeder carga datos de demo. Si ya hay datos, no pisa
+nada. El menu principal tiene categorias, productos, usuarios, pedidos y reportes."
+
+[MOSTRAR: categorias — alta, mostrar ID generado; modificar dejando campo vacio]
+
+"En categorias hago ABM completo. En alta, si el nombre esta vacio no persiste.
+Al guardar muestro el ID que genera la base.
+
+En modificar, si dejo un campo vacio conservo el valor anterior — eso esta
+en toda la consola."
+
+[MOSTRAR: productos — alta con categoria, precio, stock, disponible S/N]
+
+"Productos: elijo categoria activa, valido precio y stock, y asocio el producto
+con la relacion unidireccional desde Categoria, como pide la consigna del TPI."
+
+[MOSTRAR: usuarios — alta con rol; buscar por mail]
+
+"Usuarios: valido mail unico con buscarPorMail, que devuelve Optional.
+En la busqueda muestro datos pero nunca la contraseña.
+
+La baja pide confirmacion antes de marcar eliminado."
+
+[MOSTRAR: pedidos — alta: usuario, forma pago, agregar 2+ productos, confirmar]
+
+"El alta de pedido es lo mas importante tecnicamente.
+
+Primero valido en memoria: stock, disponible, cantidad. Despues abro UNA
+transaccion con un solo EntityManager: em.find del usuario y productos,
+addDetallePedido, calcularTotal, bajo stock, persist del pedido con cascade
+a los detalles, y commit.
+
+Si algo falla — rollback completo, nada queda a medias."
+
+[MOSTRAR opcional: pedido con cantidad imposible — mensaje de rollback]
+
+"Esto demuestra que no es solo CRUD suelto: entiendo transacciones atomicas."
+
+[MOSTRAR: cambiar estado CONFIRMADO, TERMINADO; baja logica pedido]
+
+"Tambien cambio estados y doy baja logica. La consigna dice que en baja de
+pedido NO se restaura stock — y eso lo respeto."
+
+
+================================================================================
+12:00 - 13:45 | REPORTES Y CODIGO CLAVE (~1 min 45 s)
+================================================================================
+
+[MOSTRAR: menu Reportes — los 4 reportes en vivo]
+
+"Reportes:
+
+1) Productos por categoria — JPQL con JOIN desde Categoria.
+2) Pedidos por usuario — todos los pedidos activos de ese usuario.
+3) Pedidos por estado.
+4) Total facturado — suma pedidos TERMINADO con formato $%.2f."
+
+[MOSTRAR: IDE — BaseRepository.java, metodo guardar y listarActivos]
+
+"BaseRepository centraliza persist, merge, listarActivos con eliminado false,
+eliminarLogico y buscarPorId con Optional. Cada metodo abre y cierra su propio
+EntityManager."
+
+[MOSTRAR: ProductoRepository o PedidoRepository — comentario JPQL]
+
+"Las consultas personalizadas tienen parametros nombrados, filtran eliminado
+false y llevan comentario explicando la consulta."
+
+
+================================================================================
+13:45 - 14:30 | DECISIONES TECNICAS (cerrar fuerte, sin apuro)
+================================================================================
+
+[MOSTRAR: pantalla partida — navegador + consola, o volver a camara]
+
+"Para resumir las decisiones que mas me importan:
+
+— Soft delete en todo el backend: integridad historica.
+— Pedido atomico: una transaccion, rollback si falla.
+— Frontend con capa api aislada: lista para REST.
+— Roles ADMIN y USUARIO con flujos separados.
+— README en frontend y backend con instrucciones y credenciales.
+
+El ZIP de entrega trae solo frontend/ y backend/, sin node_modules ni build."
+
+
+================================================================================
+14:30 - 15:00 | CIERRE
+================================================================================
+
+[MOSTRAR: camara o logo Food Store en pantalla]
+
+"Listo. Food Store cumple las dos partes del TPI: web funcional con cliente
+y admin, y backend JPA con menu, JPQL y persistencia real en H2.
+
+Frontend: npm install y npm run dev.
+Backend: gradlew run.
+
+Gracias por ver la presentacion. Cualquier duda queda en los README de cada
+carpeta."
+
+
+================================================================================
+QUE MOSTRAR — RESUMEN POR PANTALLA
+================================================================================
+
+| Momento              | Pantalla principal                          | Archivo / accion opcional        |
+|----------------------|---------------------------------------------|----------------------------------|
+| Intro                | Camara + carpetas frontend/backend          | —                                |
+| Arquitectura         | Explorador + api.ts + paquete com.tp.jpa    | persistence.xml, build.gradle    |
+| Login cliente        | Navegador login                             | usuarios.json (1 seg)            |
+| Catalogo             | /store filtros y busqueda                   | home.ts filtro disponible        |
+| Detalle + carrito    | producto, carrito, checkout                 | cart.ts, config.ts ENVIO         |
+| Mis pedidos          | /orders + modal                               | pedidos.json                     |
+| Admin dashboard      | /admin KPIs                                   | adminHome.ts                     |
+| Admin CRUD           | categories, products, orders                | modales alta/edicion             |
+| Backend menu         | Consola menu principal                        | Main.java (5 seg)                |
+| ABM consola          | Alta categoria/producto/usuario               | entidades en model/              |
+| Pedido atomico       | Alta pedido 2+ productos + total              | Main altaPedido (10 seg IDE)     |
+| Rollback (opcional)  | Error stock + mensaje rollback                | —                                |
+| Reportes             | 4 reportes ejecutados                         | *Repository.java                 |
+| Cierre               | Camara o split pantalla                       | LEEME.txt estructura ZIP         |
+
+
+================================================================================
+TIPS PARA SONAR SEGURA Y RELAJADA
+================================================================================
+
+1. Habla como si le explicaras el proyecto a un companero, no a un tribunal.
+2. Usa frases cortas. Pausa un segundo despues de cada concepto clave.
+3. Deci "implemente", "elegi", "valido" — no "capaz" ni "creo que".
+4. Si Gradle tarda, segui narrando la arquitectura; no te quedes en silencio.
+5. No leas codigo linea por linea: mostra el archivo 5-10 segundos y volve a demo.
+6. Practica una vez con cronometro; si te pasas de 15 min, acorta dashboard admin.
+7. Si te quedas corta, extende la demo del pedido atomico y los reportes.
+
+
+================================================================================
+CHECKLIST PRE-GRABACION
+================================================================================
+
+[ ] Backend: .\gradlew.bat build
+[ ] Frontend: npm run build
+[ ] Backend corriendo (gradlew run)
+[ ] Frontend corriendo (npm run dev) en :5173
+[ ] Credenciales anotadas en post-it
+[ ] Camara OK los primeros 45 segundos
+[ ] Notificaciones de Windows silenciadas
+[ ] Duracion objetivo: 13-15 min (max 15 segun PAUTAS)

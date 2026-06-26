@@ -39,9 +39,11 @@ java -jar build\libs\foodstore-backend-1.0.0.jar
 
 La base de datos H2 se crea automáticamente en `./data/jpa_db.mv.db` al primer arranque.
 
-## Orden de carga de datos
+## Carga de datos
 
-No hay carga inicial automática. Crear datos desde el menú en este orden:
+Al primer arranque, si la base está vacía, `DataSeeder.seedIfEmpty()` carga categorías, productos, usuarios y pedidos de demostración.
+
+También podés crear datos manualmente desde el menú en este orden:
 
 1. Categorías
 2. Productos (requieren categoría existente)

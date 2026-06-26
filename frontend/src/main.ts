@@ -14,9 +14,13 @@ import { renderAdminProducts, bindAdminProducts } from './pages/admin/products/p
 import { renderAdminOrders, bindAdminOrders } from './pages/admin/orders/orders';
 
 const app = document.getElementById('app')!;
+let datosListos = false;
 
 async function render(): Promise<void> {
-  await initData();
+  if (!datosListos) {
+    await initData();
+    datosListos = true;
+  }
   await syncSessionProfile();
   const route = getRoute();
 

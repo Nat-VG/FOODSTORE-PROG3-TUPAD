@@ -197,6 +197,14 @@ export function bindCart(rerender: () => void): void {
         subtotal: item.precio * item.cantidad,
       })),
     };
+
+    const productos = await getProductos();
+    for (const item of cart) {
+      const prod = productos.find((p) => p.id === item.idProducto);
+      if (!prod) continue;
+      prod.stock = Math.max(0, prod.stock - item.cantidad);
+    }
+
     addPedido(pedido);
     clearCart();
     closeCheckoutModal();

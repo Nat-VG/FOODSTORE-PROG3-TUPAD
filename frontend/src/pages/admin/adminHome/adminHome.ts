@@ -1,13 +1,8 @@
 import { getCategorias, getProductos, getPedidos } from '../../../utils/api';
 import { getSession, clearSession } from '../../../utils/auth';
-import { escapeHtml, navigate } from '../../../utils/helpers';
+import { navigate } from '../../../utils/helpers';
 
 export function renderAdminHeader(): string {
-  const session = getSession();
-  const nombre = session
-    ? escapeHtml(`${session.nombre} ${session.apellido}`.trim())
-    : '';
-
   return `
     <header class="admin-topbar">
       <div class="admin-topbar-inner">
@@ -15,7 +10,6 @@ export function renderAdminHeader(): string {
         <nav class="admin-topbar-nav">
           <a href="#/store">Tienda</a>
           <a href="#/admin" class="admin-topbar-active">Panel Admin</a>
-          <span class="admin-topbar-user">${nombre}</span>
           <button type="button" id="admin-header-logout" class="btn-admin-logout">Cerrar Sesión</button>
         </nav>
       </div>

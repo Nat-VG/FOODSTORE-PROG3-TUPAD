@@ -9,11 +9,11 @@ function productImageValue(prod: Producto): string {
   return `/images/products/${prod.id}.jpg`;
 }
 
-function stockBadge(stock: number): string {
-  if (stock > 0) {
-    return `<span class="stock-badge stock-badge-yes">Sí</span>`;
+function stockCell(stock: number): string {
+  if (stock === 0) {
+    return `<span class="stock-zero">0</span>`;
   }
-  return `<span class="stock-badge stock-badge-no">No</span>`;
+  return String(stock);
 }
 
 function availabilityBadge(disponible: boolean): string {
@@ -38,7 +38,7 @@ export async function renderAdminProducts(): Promise<string> {
       <td class="admin-table-desc">${escapeHtml(p.descripcion)}</td>
       <td>${formatPrice(p.precio)}</td>
       <td>${escapeHtml(catMap.get(p.categoriaId) ?? '-')}</td>
-      <td>${stockBadge(p.stock)}</td>
+      <td>${stockCell(p.stock)}</td>
       <td>${availabilityBadge(p.disponible)}</td>
       <td class="admin-table-actions">
         <button type="button" class="btn-table-edit btn-edit" data-id="${p.id}">Editar</button>

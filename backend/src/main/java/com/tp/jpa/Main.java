@@ -75,17 +75,17 @@ public class Main {
         while (!volver) {
             header("GESTION DE CATEGORIAS");
             System.out.println("  1. Alta de categoria");
-            System.out.println("  2. Listar categorias activas");
-            System.out.println("  3. Modificar categoria");
-            System.out.println("  4. Baja logica de categoria");
+            System.out.println("  2. Modificar categoria");
+            System.out.println("  3. Baja logica de categoria");
+            System.out.println("  4. Listar categorias activas");
             System.out.println("  0. Volver al menu principal");
             System.out.println(LINE);
             String op = leerOpcion();
             switch (op) {
                 case "1" -> altaCategoria();
-                case "2" -> listarCategorias();
-                case "3" -> modificarCategoria();
-                case "4" -> bajaCategoria();
+                case "2" -> modificarCategoria();
+                case "3" -> bajaCategoria();
+                case "4" -> listarCategorias();
                 case "0" -> volver = true;
                 default  -> opcionInvalida();
             }
@@ -174,6 +174,11 @@ public class Main {
             return;
         }
         String nombre = opt.get().getNombre();
+        if (!leerSiNo("  ¿Confirmar baja lógica de la categoría '" + nombre + "'?", false)) {
+            info("Operación cancelada por el operador.");
+            pausa();
+            return;
+        }
         if (categoriaRepo.eliminarLogico(id)) {
             ok("Categoria '" + nombre + "' dada de baja correctamente.");
         } else {
@@ -385,6 +390,11 @@ public class Main {
             return;
         }
         String nombre = opt.get().getNombre();
+        if (!leerSiNo("  ¿Confirmar baja lógica del producto '" + nombre + "'?", false)) {
+            info("Operación cancelada por el operador.");
+            pausa();
+            return;
+        }
         boolean exito = productoRepo.eliminarLogico(id);
         if (exito) {
             ok("Producto '" + nombre + "' dado de baja correctamente.");
@@ -554,6 +564,11 @@ public class Main {
             return;
         }
         Usuario u = opt.get();
+        if (!leerSiNo("  ¿Confirmar baja logica del usuario '" + nombreCompletoUsuario(u) + "'?", false)) {
+            info("Operacion cancelada por el operador.");
+            pausa();
+            return;
+        }
         if (usuarioRepo.eliminarLogico(id)) {
             ok("Usuario '" + nombreCompletoUsuario(u) + "' dado de baja correctamente.");
         } else {
@@ -746,6 +761,10 @@ public class Main {
             Pedido p = opt.get();
             System.out.println("Estado actual: " + p.getEstado());
             EstadoPedido nuevoEstado = seleccionarEstadoPedido();
+            if (!leerSiNo("¿Confirmar cambio de estado de " + p.getEstado() + " a " + nuevoEstado + "?", false)) {
+                System.out.println("Operación cancelada por el operador.");
+                return;
+            }
             p.setEstado(nuevoEstado);
             pedidoRepo.guardar(p);
             System.out.println("Pedido ID " + p.getId() + " actualizado a estado: " + p.getEstado());
@@ -759,6 +778,10 @@ public class Main {
                 return;
             }
             Pedido p = opt.get();
+            if (!leerSiNo("¿Confirmar baja lógica del pedido ID " + p.getId() + "?", false)) {
+                System.out.println("Operación cancelada por el operador.");
+                return;
+            }
             if (pedidoRepo.eliminarLogico(id)) {
                 System.out.printf("Pedido dado de baja -> ID: %d | Total: $%.2f%n", p.getId(), p.getTotal());
             } else {
